@@ -24,13 +24,11 @@ export function List() {
 
   return (
     <>
-      {characters.length > 0 && (
-        <ul className="characters-list row list-unstyled">
-          {characters.map((item) => (
-            <Card info={item} key={item.id}></Card>
-          ))}
-        </ul>
-      )}
+      <ul className="characters-list row list-unstyled">
+        {characters.map((item) => (
+          <Card info={item} key={item.id}></Card>
+        ))}
+      </ul>
     </>
   );
 }
