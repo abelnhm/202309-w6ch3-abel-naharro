@@ -1,0 +1,57 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "isAlive": false,
+      "message": "You're all to die!",
+      "name": "joffrey",
+      "family": "Baratheon",
+      "age": 18,
+      "reignYears": 1,
+      "category": "king"
+    },
+    {
+      "id": 2,
+      "isAlive": false,
+      "message": "I hit first and ask later",
+      "name": "jaime",
+      "family": "Lannister",
+      "age": 33,
+      "weapon": "sword",
+      "skillLevel": 10,
+      "category": "fighter"
+    },
+    {
+      "id": 3,
+      "isAlive": true,
+      "message": "I hit first and ask later",
+      "name": "daenerys",
+      "family": "Targaryen",
+      "age": 18,
+      "weapon": "dragons",
+      "skillLevel": 8,
+      "category": "fighter"
+    },
+    {
+      "id": 4,
+      "isAlive": true,
+      "message": "I dunno know why, but I believe I am gonna die soon",
+      "name": "tyrion",
+      "family": "Lannister",
+      "age": 40,
+      "adviseTo": null,
+      "category": "adviser"
+    },
+    {
+      "id": 5,
+      "isAlive": true,
+      "message": "I am a real loser",
+      "name": "bronn",
+      "family": "Nieve",
+      "age": 35,
+      "serveLevel": 5,
+      "servesTo": null,
+      "category": "squire"
+    }
+  ]
+}
