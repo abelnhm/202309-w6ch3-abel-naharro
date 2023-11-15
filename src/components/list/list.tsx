@@ -14,12 +14,6 @@ export function List() {
     loadCharacters();
   }, [loadCharacters]);
 
-  console.log('CHARACTER:');
-  console.log(characters);
-
-  console.log('CHARACTER STATE:');
-  console.log(charactersRequestState);
-
   if (charactersRequestState === 'loading') {
     return <p>Loading</p>;
   }

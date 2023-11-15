@@ -1,6 +1,6 @@
 import { Character } from '../../model/characters';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { loadCharactersThunk } from './characters.thunks';
+import { loadCharactersThunk, updateCharacterThunk } from './characters.thunks';
 
 type CharactersState = {
   characters: Character[];
@@ -15,14 +15,7 @@ const initialState: CharactersState = {
 const charactersSlice = createSlice({
   name: 'characters',
   initialState,
-  reducers: {
-    update: (state: CharactersState, { payload }: PayloadAction<Character>) => {
-      state.characters[
-        state.characters.findIndex((item) => item.id === payload.id)
-      ] = payload;
-      return state;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadCharactersThunk.pending, (state: CharactersState) => {
       state.charactersRequestState = 'loading';
@@ -40,8 +33,16 @@ const charactersSlice = createSlice({
       state.charactersRequestState = 'error';
       return state;
     });
+    builder.addCase(
+      updateCharacterThunk.fulfilled,
+      (state: CharactersState, { payload }: PayloadAction<Character>) => {
+        state.characters[
+          state.characters.findIndex((item) => item.id === payload.id)
+        ] = payload;
+        return state;
+      }
+    );
   },
 });
 
 export default charactersSlice.reducer;
-export const { update } = charactersSlice.actions;

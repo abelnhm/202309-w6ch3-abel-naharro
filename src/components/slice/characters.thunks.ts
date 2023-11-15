@@ -9,3 +9,15 @@ export const loadCharactersThunk = createAsyncThunk<Character[], ApiRepo>(
     return responseCharacters;
   }
 );
+
+export const updateCharacterThunk = createAsyncThunk<
+  Character,
+  {
+    repo: ApiRepo;
+    id: Character['id'];
+    updatedCharacter: Partial<Character>;
+  }
+>('characters/update', async ({ repo, id, updatedCharacter }) => {
+  const responseUpdateCharacter = await repo.setCharacter(id, updatedCharacter);
+  return responseUpdateCharacter;
+});
