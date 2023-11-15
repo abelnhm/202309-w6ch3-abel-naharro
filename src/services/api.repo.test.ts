@@ -30,5 +30,44 @@ describe('Given ApiRepo class', () => {
       const repo = new ApiRepo();
       expect(repo.getCharacters()).rejects.toThrow();
     });
+
+    test('Then method setCharacters should be used', async () => {
+      const mockId = 1;
+      const characterData = { id: 1 } as unknown as Partial<Character>;
+      const expectedUrl = 'http://localhost:3000/characters/1';
+      const repo = new ApiRepo();
+
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue(characterData),
+      });
+
+      const response = await repo.setCharacter(mockId, characterData);
+
+      expect(global.fetch).toHaveBeenCalledWith(expectedUrl, {
+        method: 'PATCH',
+        body: JSON.stringify(characterData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      expect(response).toEqual(characterData);
+    });
+
+    test('Then method setCharacters should be used', async () => {
+      const mockId = 1;
+      const characterData = { id: 1 } as unknown as Partial<Character>;
+      const repo = new ApiRepo();
+
+      global.fetch = jest.fn().mockResolvedValueOnce({
+        ok: false,
+        status: 404,
+        statusText: 'Not Found',
+      });
+
+      await expect(repo.setCharacter(mockId, characterData)).rejects.toThrow(
+        '404 Not Found'
+      );
+    });
   });
 });
